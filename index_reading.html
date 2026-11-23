@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>読んだ本リスト 2021–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F9F6; --card:#FFFFFF; --ink:#26332F; --muted:#6F7D78; --line:#DDE5E0;
+  --night:#F0F4F1; --night-ink:#1F4A42; --night-muted:#6B857D;
+  --accent:#2F6F66; --accent-ink:#FFFFFF; --on-c:#26332F;
+  --g-novel:#2E5E5A; --g-words:#5E8E84; --g-work:#94B9AF; --g-life:#C5DAD2; --g-learn:#6F8FAE; --g-manga:#B3C6DB;
+  --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --gothic:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --num:"Cormorant Garamond","Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#161B1A; --card:#1E2523; --ink:#E7EFEC; --muted:#9DAEA8; --line:#2E3936;
+    --night:#1C2926; --night-ink:#E4F0EB; --night-muted:#8FB0A6;
+    --accent:#86C5B6; --accent-ink:#161B1A; --on-c:#161B1A;
+    --g-novel:#6FA59E; --g-words:#8FBCB1; --g-work:#B4D1C8; --g-life:#D3E5DE; --g-learn:#9DB8D2; --g-manga:#C9D7E7;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161B1A; --card:#1E2523; --ink:#E7EFEC; --muted:#9DAEA8; --line:#2E3936;
+  --night:#1C2926; --night-ink:#E4F0EB; --night-muted:#8FB0A6;
+  --accent:#86C5B6; --accent-ink:#161B1A; --on-c:#161B1A;
+  --g-novel:#6FA59E; --g-words:#8FBCB1; --g-work:#B4D1C8; --g-life:#D3E5DE; --g-learn:#9DB8D2; --g-manga:#C9D7E7;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 170px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--gothic);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* ===== hero ===== */
+.hero{background:var(--night);color:var(--night-ink);padding:64px 0 0;overflow:hidden}
+.hero-top{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+.kicker{font-family:var(--num);font-style:italic;font-size:22px;color:var(--night-muted);margin:0}
+.hero h1{margin:0;line-height:.9}
+.hero h1 .en{display:block;color:var(--accent);font-family:var(--num);font-style:italic;font-weight:600;font-size:clamp(72px,14vw,168px);letter-spacing:-.02em}
+.hero h1 .ja{display:block;font-family:var(--mincho);font-weight:700;font-size:clamp(20px,2.6vw,28px);letter-spacing:.18em;margin-top:14px}
+.tally{display:grid;gap:10px;text-align:right;padding-bottom:10px}
+.tally div{display:flex;align-items:baseline;justify-content:flex-end;gap:8px}
+.tally b{font-family:var(--num);font-style:italic;font-weight:600;font-size:46px;line-height:1}
+.tally span{font-size:13px;color:var(--night-muted);min-width:5.5em;text-align:left}
+.lead{color:var(--night-muted);margin:22px 0 0;max-width:36em;font-size:14px}
+
+.chart{margin-top:44px}
+.years{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(10px,3vw,36px);align-items:end;height:230px;border-bottom:2px solid var(--night-muted)}
+.ycol{display:flex;flex-direction:column;justify-content:flex-end;height:100%;min-width:0}
+.ytot{font-family:var(--num);font-style:italic;font-weight:600;font-size:30px;line-height:1;margin-bottom:8px}
+.ytot small{font-family:var(--gothic);font-style:normal;font-weight:400;font-size:11px;color:var(--night-muted);margin-left:3px}
+.stack{display:flex;flex-direction:column-reverse;gap:1px;height:var(--h)}
+.seg{flex:var(--n) 1 0;min-height:0;border:0;padding:0;background:var(--c);cursor:pointer;transition:opacity .2s}
+.seg:hover{filter:brightness(1.12)}
+.years.dim .seg{opacity:.2}
+.years.dim .seg.on{opacity:1}
+.ylab{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(10px,3vw,36px);padding-top:8px}
+.ylab span{font-family:var(--num);font-style:italic;font-size:18px;color:var(--night-muted)}
+.ylab span.on{color:var(--night-ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;padding:22px 0 30px}
+.legend button{display:inline-flex;align-items:center;gap:8px;border:0;background:none;color:var(--night-ink);cursor:pointer;padding:4px 0;font-size:14px}
+.legend .sw{width:14px;height:14px;background:var(--c)}
+.legend em{font-family:var(--num);font-size:17px;color:var(--night-muted)}
+.legend button[aria-pressed="true"]{text-decoration:underline;text-underline-offset:5px}
+
+/* ===== toolbar ===== */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:16px 0 12px;box-shadow:0 8px 20px -18px rgba(0,0,0,.35)}
+.search{display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--ink);padding:0 4px;height:52px}
+.search svg{flex:none;width:22px;height:22px}
+.search input{flex:1;min-width:0;border:0;background:transparent;font-family:var(--mincho);font-size:22px;color:var(--ink);height:100%;outline:none}
+.search input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+.search input::placeholder{color:var(--muted);opacity:.8}
+.search .clear{border:0;background:transparent;width:34px;height:34px;border-radius:50%;cursor:pointer;color:var(--muted);display:none}
+.search.has .clear{display:block}
+.controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-top:12px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 100%;min-width:0}
+@media (max-width:600px){.filters .chip .n{display:none}.filters .chip{padding:4px 10px 4px 6px;gap:5px}}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.chip .n{font-family:var(--num);font-style:italic;font-size:15px;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip[aria-pressed="true"] .n{color:inherit;opacity:.7}
+.opts{display:flex;gap:8px;align-items:center;flex:none;flex-wrap:wrap}
+.opts select{font:inherit;font-size:13px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:8px;padding:4px 8px}
+.toggle{cursor:pointer;border:1px solid var(--line);background:transparent;border-radius:8px;padding:4px 10px;font-size:13px}
+.toggle[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.result{font-size:13px;color:var(--muted);white-space:nowrap}
+.result b{font-family:var(--num);font-style:italic;font-size:19px;color:var(--ink)}
+
+/* ===== list ===== */
+main{padding:8px 0 80px}
+section.genre{margin-top:64px}
+.ghead{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:6px 20px;padding-bottom:14px;border-bottom:3px solid var(--c);margin-bottom:6px}
+.ghead h2{margin:0;font-family:var(--mincho);font-weight:800;font-size:clamp(30px,4.2vw,44px);line-height:1.1}
+.ghead .en{font-family:var(--num);font-style:italic;font-size:24px;color:var(--c);line-height:1.2}
+.ghead .n{font-family:var(--num);font-style:italic;font-weight:600;font-size:clamp(44px,6vw,64px);line-height:.8;color:var(--c)}
+.ghead p{grid-column:1/-1;margin:0;font-size:13px;color:var(--muted)}
+ul.books{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:48px}
+li.book{display:grid;grid-template-columns:4px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+li.book .spine{align-self:stretch;background:var(--c)}
+.bt{font-family:var(--mincho);font-weight:500;font-size:16.5px;line-height:1.5;margin:0;overflow-wrap:anywhere}
+.bm{margin:3px 0 0;font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+.au{border:0;background:none;padding:0;cursor:pointer;color:var(--muted);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.au:hover{color:var(--ink)}
+.tag{font-size:12px;color:var(--accent);letter-spacing:.02em}
+.tag::before{content:"#";margin-right:1px;opacity:.55}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.yr{font-family:var(--num);font-style:italic;font-size:16px;color:var(--muted);white-space:nowrap}
+.rt{font-size:11px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+.best{display:inline-block;font-family:var(--num);font-style:italic;font-weight:700;font-size:14px;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:0 9px;line-height:1.5}
+mark{background:color-mix(in srgb,var(--accent) 22%,transparent);color:inherit;border-radius:2px}
+.empty{padding:80px 0;text-align:center;color:var(--muted)}
+.empty button{margin-top:14px;border:1px solid var(--ink);background:transparent;border-radius:999px;padding:6px 18px;cursor:pointer}
+.viewsw{display:inline-flex;border:1px solid var(--ink);border-radius:999px;overflow:hidden;flex:none}
+.viewsw button{border:0;background:transparent;padding:5px 14px 5px 11px;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.viewsw button svg{width:15px;height:15px;flex:none;opacity:.85}
+.viewsw button[aria-pressed="true"] svg{opacity:1}
+.viewsw button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.authors{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:20px}
+.acard{border:1px solid var(--line);background:var(--card);padding:16px 16px 14px;text-align:left;cursor:pointer;display:grid;gap:12px;border-radius:2px;color:var(--ink)}
+.acard:hover{border-color:var(--ink)}
+.acard.au,.singles .au{text-decoration:none;color:var(--ink)}
+.acard .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.acard .nm{font-family:var(--mincho);font-weight:700;font-size:19px;line-height:1.3}
+.acard .ct{font-family:var(--num);font-style:italic;font-weight:600;font-size:42px;line-height:.8;color:var(--c,var(--accent));white-space:nowrap}
+.acard .ct small{font-family:var(--gothic);font-style:normal;font-size:11px;color:var(--muted);font-weight:400;margin-left:3px}
+.spines{display:flex;flex-wrap:wrap;gap:2px;align-items:flex-end;min-height:30px;border-bottom:3px solid var(--line)}
+.spines i{width:7px;height:22px;background:var(--c)}
+.spines i.tall{height:30px}
+.ameta{font-size:12px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.singles{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));column-gap:28px}
+.singles li{border-bottom:1px solid var(--line)}
+.singles button{border:0;background:none;width:100%;text-align:left;padding:9px 0;cursor:pointer;display:grid;grid-template-columns:4px 1fr;gap:10px;color:var(--ink)}
+.singles .sp{background:var(--c);align-self:stretch}
+.singles b{font-family:var(--mincho);font-weight:700;font-size:15px;display:block}
+.singles span.bk{font-size:12px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:28px}
+.subchips{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 6px}
+.subchip{border:1px solid var(--line);background:transparent;border-radius:4px;padding:3px 10px;font-size:13px;cursor:pointer;color:var(--ink)}
+.subchip .n{font-family:var(--num);font-style:italic;font-size:14px;color:var(--muted)}
+.subchip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.subchip[aria-pressed="true"] .n{color:inherit;opacity:.8}
+.tag.away{border-color:var(--accent);color:var(--accent)}
+.subnote{margin:2px 0 4px;font-size:12.5px;color:var(--muted)}
+.gic{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--c);color:var(--on-c);flex:none}
+.gic svg{width:58%;height:58%}
+.gic.od{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gic.od{color:var(--on-c)}}
+:root[data-theme="dark"] .gic.od{color:var(--on-c)}
+.gic.sm{width:20px;height:20px}
+.gic.lg{width:clamp(40px,5vw,52px);height:clamp(40px,5vw,52px);margin-right:14px}
+.ghead h2{display:flex;align-items:center}
+.kicker::before{content:"✦ ";color:var(--accent);font-style:normal;font-size:.7em;vertical-align:.2em}
+.authors.compact{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.authors.compact .acard{padding:12px 12px 10px;gap:8px}
+.authors.compact .nm{font-size:15.5px}
+.authors.compact .ct{font-size:30px}
+.authors.compact .spines{min-height:20px;border-bottom-width:2px}
+.authors.compact .spines i{width:6px;height:15px}
+.authors.compact .spines i.tall{height:20px}
+.authors.compact .ameta{font-size:11px;gap:6px}
+@media (max-width:600px){.authors.compact{grid-template-columns:1fr 1fr}}
+.backbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px;padding:12px 14px;background:var(--night);border-radius:4px}
+.backbar button{border:1px solid var(--accent);background:var(--card);color:var(--accent);border-radius:999px;padding:5px 14px;font-size:13px;cursor:pointer}
+.backbar span{font-family:var(--mincho);font-weight:700;color:var(--night-ink)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:12.5px;color:var(--muted)}
+
+@media (max-width:860px){
+  ul.books{grid-template-columns:1fr}
+  .hero-top{grid-template-columns:1fr}
+  .tally{grid-auto-flow:column;justify-content:start;text-align:left}
+  .tally div{justify-content:flex-start}.tally span{min-width:0}
+}
+@media (max-width:600px){
+  .wrap{padding:0 18px}
+  .hero{padding-top:40px}
+  .tally b{font-size:36px}
+  .years{height:170px}
+  .ytot{font-size:22px}.ytot small{display:none}
+  .ylab span{font-size:14px}
+  .legend{gap:4px 16px}.legend button{font-size:13px}
+  .search input{font-size:18px}
+  .opts{width:100%;flex:1 1 100%}
+  .result{margin-left:auto}
+  section.genre{margin-top:48px}
+  li.book{gap:11px}
+  .bt{font-size:15.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <p class="kicker">2021 – 2026</p>
+        <h1><span class="en">Bookshelf</span><span class="ja">読んだ本リスト</span></h1>
+        <p class="lead">6年分の読書記録から、読み終えた本を6つの棚に分けました。下のグラフは、年ごとに読んだ冊数とその内訳です。色を押すと、その年のその棚に絞り込めます。</p>
+      </div>
+      <div class="tally" id="tally"></div>
+    </div>
+    <div class="chart">
+      <div class="years" id="years"></div>
+      <div class="ylab" id="ylab"></div>
+      <div class="legend" id="legend" role="group" aria-label="棚を選ぶ"></div>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <label class="search" id="searchBox">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="書名・著者名で探す" autocomplete="off" aria-label="書名・著者名で探す">
+      <button class="clear" id="clear" type="button" aria-label="検索語を消す">✕</button>
+    </label>
+    <div class="controls">
+      <div class="filters" id="genres" role="group" aria-label="棚"></div>
+      <div class="opts">
+        <div class="viewsw" id="viewsw" role="group" aria-label="表示の切り替え"><button type="button" data-v="books"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.5 4h4.2v16H3.5z M9.2 4h4.2v16H9.2z M15 5.2l3.9-1 4 15.4-3.9 1z"/></svg>本</button><button type="button" data-v="authors"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3.8a4.1 4.1 0 1 1 0 8.2a4.1 4.1 0 1 1 0-8.2z M4.3 20.2c0-4.1 3.5-6.7 7.7-6.7s7.7 2.6 7.7 6.7z"/></svg>著者</button><button type="button" data-v="tsundoku"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.3 3.5h11.4v17.2L12 16.6l-5.7 4.1z"/></svg>読みかけ</button></div>
+        <select id="year" aria-label="読んだ年"></select>
+        <select id="sort" aria-label="並び順">
+          <option value="new">新しい順</option>
+          <option value="rate">評価順</option>
+          <option value="title">書名順</option>
+        </select>
+        <button class="toggle" id="bestOnly" type="button" aria-pressed="false">Best!!</button>
+        <span class="result" id="result" aria-live="polite"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <main id="list"></main>
+  <footer>Notionの読書キロク（〜2021年〜2026年）の「読了」の本から作成。2026年11月22日時点のデータです。何度か読んだ本は1冊にまとめ、読んだ年を並べています。</footer>
+</div>
+
+<script>
+const RAW = `#2021
+白ゆき姫殺人事件|湊かなえ|q|B|
+騎士団長殺しⅠ|村上春樹|n|3|
+贖罪|湊かなえ|q|3|
+世界一やさしいやりたいコトの見つけ方|八木仁平|b|3|
+服を買うなら、捨てなさい|地曳いく子|l|3|
+望む人生に組み替える「人生設計ノート」||b|2|
+国語、算数、理科、誘拐|青柳碧人|q|3|
+人は話し方が9割|永松茂久|b|3|
+叫びと祈り|梓崎優|q|3|
+おかねに愛される魔法のお財布||l|2|
+「ずるい考え方」|木村尚義|b|2|
+AとZ||b|B|
+オンライン就活||b|2|
+赤い指|東野圭吾|q|2|
+葉桜の季節に君を想うということ|歌野晶午|q|3|
+ルビンの壺が割れた|宿野かほる|q|B|
+氷菓|米澤穂信|q|2|
+パラレルワールド・ラブストーリー|東野圭吾|q|B|
+リバース|湊かなえ|q|B|
+スタンフォード式最高の睡眠|西野精治|l|2|
+ぼくのメジャースプーン|辻村深月|n|3|
+medium|相沢沙呼|q|B|
+豆の上で眠る|湊かなえ|q|2|
+LOVE理論|水野敬也|b|B|
+容疑者Xの献身|東野圭吾|q|B|
+ゴミ人間|西野亮廣|e|3|
+赤ずきん、旅の途中で死体と出会う|青柳碧人|q|2|
+女子の人間関係|水島広子|b|B|
+いい女、ダイエット||l|1|
+アリス殺し|小林泰三|q|2|
+転職の思考法|北野唯我|b|B|
+洋服で得する人、損する人||l|3|
+ぼくはイエローでホワイトで、ちょっとブルー|ブレイディみかこ|hn|3|
+かもめ食堂|群ようこ|n|1|
+晴れ、ときどき食品サンプル|青柳碧人|q|2|
+必要十分生活|大原扁理|l|3|
+ユートピア|湊かなえ|q|2|
+超一流の雑談術|安田正|b|3|
+あなたを生かす油、ダメにする油||l|1|
+モンスター|百田尚樹|n|3|
+チーズはどこへ行った？|スペンサー・ジョンソン|b|B|
+ケトジェニックダイエット||l|3|
+すぐに不安になってしまうが一瞬で消える本||b|3|
+月曜断食|関口賢|l|2|
+会話は、途切れてもいい||b|3|
+コンビニ人間|村田沙耶香|n|3|
+友だち幻想|菅野仁|b|2|
+一華後宮料理帖|三川みり|n|3|
+私たちが星座を盗んだ理由|北山猛邦|q|2|
+むかしむかしあるところに死体がありました|青柳碧人|q|B|
+何故星付きシェフの僕がサイゼリアでバイトをするのか？|村山太一|b|3|
+痩せない豚は幻想を捨てろ|テキーラ村上|l|B|
+ナミヤ雑貨店の奇蹟|東野圭吾|q|3|
+夜行観覧車|湊かなえ|q|3|
+『いい質問』がひとを動かす|谷原誠|b|3|
+俺か、俺以外か|ROLAND|e|B|
+20代の生き方で人生は9割決まる！||b|2|
+獣の城|誉田哲也|q|1|
+上品なものを、少しづつ||l|2|
+6人の嘘つきな大学生|浅倉秋成|q|B|
+１％の努力|ひろゆき|b|3|
+ファーストラヴ|島本理生|n|2|
+君が夏を走らせる|瀬尾まいこ|n|3|
+シンプル生活、55のヒント||l|2|
+イノセントデイズ|早見和真|q|3|
+母性|湊かなえ|q|2|
+スマホ脳|アンデシュ・ハンセン|b|3|
+桜のような僕の恋人|宇山佳佑|n|2|
+出会い系サイトで70人と….|花田菜々子|e|B|
+多分そいつ、今ごろパフェとか食ってるよ|Jam|b|2|
+ホワイトラビット|伊坂幸太郎|q|2|
+僕は何度でも、君に初めての恋をする|沖田円|n|3|
+育ちがいい人だけが知っていること|諏内えみ|l|2|
+夢をかなえるゾウ１|水野敬也|n|3|
+最強の生き方||b|2|
+美容は自尊心の筋トレ|長田杏奈|b|3|
+農ガール、農ライフ|垣谷美雨|n|3|
+どちらかが彼女を殺した|東野圭吾|q|3|
+文具に恋して||b|3|
+「ねえ、これ捨ててみない？」||l|3|
+GACKTの勝ち方|GACKT|e|2|
+夢をかなえるゾウ３|水野敬也|b|3|
+私を幸せにする41のルール||l|1|
+めんどくさいが無くなる本|鶴田豊和|b|B|
+「会話の苦手」がなくなる本||b|3|
+人生がときめく片付けの魔法１|近藤麻理恵|l|B|
+20代にやっておきたい17のコト|本田健|b|2|
+察しない男、説明しない女|五百田達成|b|3|
+やめるコトリスト||b|3|
+幸せ上手さん習慣||b|2|
+おしまいのデート|瀬尾まいこ|n|3|
+花の鎖|湊かなえ|q|3|
+魔法のメス力|神崎メリ|l|3|
+アミティ先生||b|3|
+朝の余白が人生を変える||b|B|
+シンプルに生きる|ドミニック・ローホー|l|3|
+スパルタ婚活塾|水野敬也|l|3|
+人生がときめく片付けの魔法２|近藤麻理恵|l|3|
+老後の資金がありません！|垣谷美雨|n|3|
+悪いものがきませんように|芦沢央|n|2|
+人生を変えるサウナ術|本田直之、松尾大|l|2|
+フランス人は10着しか服を持たない|ジェニファー・L・スコット|l|B|
+告白|湊かなえ|q|B|
+悪意|東野圭吾|q|B|
+もっと自分を好きになる、お片付けのキセキ||l|3|
+神様がくれた奇跡のお掃除術||l|2|
+嫌われる勇気|岸見一郎、古賀史健|b|B|
+東大なんて来なければよかった||b|3|
+高校入試|湊かなえ|q|3|
+好きとか可愛いとか愛してるとか、言うたびに消費してたならくれなくて良かったのに||l|2|
+「引きよせ」の教科書|奥平亜美衣|b|3|
+少女|湊かなえ|q|B|
+繊細さんの本|武田友紀|b|B|
+#2022
+13歳からの地政学|田中孝幸|h|B|7
+死にたくなったら電話して|李龍徳|n|1|2
+ディックブルーナ永遠のデザインことば||hd|3|8
+99%はバイアス||b|3|9
+麦本三歩の好きなもの|住野よる|n|3|7
+それって、必要？||b|1|1
+コーヒーが冷めないうちに|川口俊和|n|2|5
+塑する思考|佐藤卓|hd|B|11
+あなたの人生、片づけます|垣谷美雨|n|3|2
+あの日きみは何をした|まさきとしか|n|3|8
+会社は仲良しクラブでいい||b|2|9
+ゼロ|堀江貴文|e|3|8
+僕たちはみんな、大人になれなかった|燃え殻|n|3|8
+一番大切なのに誰も教えてくれない段取りの教科書|水野学|b|3|7
+変な絵|雨穴|q|B|12
+彼女は存在しない|浦賀和宏|q|1|3
+デザインあ||hd|3|11
+サウナー・ブック||l|1|3
+変える技術、考える技術|高松智史|b|2|10
+社会人1年目の教科書||b|2|1
+まんがでわかるサピエンス全史の読み方||b|2|4
+コンサル1年目が学ぶこと|大石哲之|b|B|3
+人間失格|太宰治|n|1|3
+か「」く「」し「」ご「」と|住野よる|n|3|7
+ポイズンドーター・ホーリーマザー|湊かなえ|q|3|9
+モノを売るバカ|川上徹也|b|2|2
+正義の教室|飲茶|hp|B|7
+深夜特急 3|沢木耕太郎|e|1|4
+星の王子さま|サン＝テグジュペリ|n|3|1
+イーロンマスク 未来を創る男|アシュリー・バンス|b|3|1
+僕の人生には事件が起きない|岩井勇気|e|B|8
+ビジネスモデルを見える化するピクト図解|板橋悟|b|2|5
+世にも奇妙な君物語|朝井リョウ|n|3|2
+傲慢と善良|辻村深月|n|B|12
+よみがえる変態|星野源|e|2|2
+幸福な生活|百田尚樹|q|3|4
+６９|村上龍|e|2|6
+エッセンシャル思考|グレッグ・マキューン|b|B|3
+職業、お金持ち||b|3|6
+本日のメニューは|行成薫|n|2|9
+決めるだけ。||b|2|6
+クソ女の美学||b|B|9
+自分の小さな「箱」から脱出する方法|アービンジャー・インスティチュート|b|B|2
+恋のゴンドラ|東野圭吾|q|2|7
+聖域||e|3|9
+深夜特急2|沢木耕太郎|e|2|3
+13歳からのアート思考|末永幸歩|hd|B|7
+渋谷ではたらく社長の告白|藤田晋|b|2|2
+また、同じ夢を見ていた|住野よる|q|3|10
+家庭教師は知っている||q|3|7
+私とは何か ―― 個人から分人へ|平野啓一郎|h|3|9
+異性|角田光代、穂村弘|e|2|1
+ネタ元|堂場瞬一|n|1|7
+発達障害グレーゾーン|姫野桂|l|3|8
+女の子のことばかり考えていたら1年が経っていた。||n|2|2
+婚活中毒|秋吉理香子|q|3|12
+判決はCMの後で|青柳碧人|q|3|7
+バズる文章の書き方||b|2|3
+〈問い〉から始めるアート思考|吉井仁実|hd|B|7
+生きる、はたらく、つくる|つくし|e|3|7
+ナナメの夕暮れ|若林正恭|e|B|2
+仕掛け学|松村真宏|hd|B|1
+星をつける女|原宏一|n|3|8
+ナラタージュ|島本理生|n|3|4
+i|西加奈子|n|3|2
+会って、話すこと。|田中泰延|b|3|8
+天才はあきらめた|山里亮太|e|2|7
+アーキオロジーからアーキテクチャへ||hd|2|7
+世界のエリートはなぜ美意識を磨くのか|山口周|b|B|1
+もしあと一年で人生が終わるとしたら？||b|2|4
+最高のオバハン|林真理子|n|3|5
+しないことリスト|pha|b|2|1
+アウトプット大全|樺沢紫苑|b|2|7
+お金の大学|両@リベ大学長|b|2|6
+嘘つきアーニャの真っ赤な真実|米原万里|hn|2|1
+読みたいことを、書けばいい|田中泰延|b|B|7
+祇園の教訓|岩崎峰子|b|2|4
+全力でアナウンサーしています||n|2|6
+人見知り大学社会人学部卒業見込み|若林正恭|e|2|7
+深夜特急1|沢木耕太郎|e|B|2
+表参道のセレブ犬とカバーニャ要塞の野良犬|若林正恭|e|B|8
+つい やってしまう体験のつくりかた|玉樹真一郎|hd|B|1
+歴史思考|深井龍之介|h|3|6
+重力ピエロ|伊坂幸太郎|q|B|9
+自分を操る超集中力|メンタリストDaiGo|b|3|4
+その手を握りたい|柚木麻子|n|3|5
+知識を操る超読書術|メンタリストDaiGo|b|2|7
+週末フィンランド|芹澤桂|b|2|3
+Butter|柚木麻子|n|1|4
+ニーチェが京都にやってきて、17歳の私に哲学のことを教えてくれた|原田まりる|hp|B|9
+デザインの仕事|寄藤文平|hd|3|11
+明日の子供たち|有川浩|n|2|7
+#2023
+氷の仮面|塩田武士|n|B|11
+最初のオトコはたたき台|林真理子|e|3|7
+あまからカルテット|柚木麻子|n|B|12
+仮面同窓会|雫井脩介|n|3|8
+うちら棺桶まで永遠のランウェイ|kemio|e|3|7
+三谷幸喜のありふれた生活（巻数不明・2023）|三谷幸喜|e|3|10
+総理の夫|原田マハ|n|B|12
+モラハラ夫と食洗機||l|2|4
+細かいことが気になります||e|3|7
+マナーの正体|複数の著者|e|3|8
+じぶんの学びの見つけ方||l|3|9
+危険なビーナス|東野圭吾|n|2|7
+王妃の帰還|柚木麻子|n|3|9
+殺した夫が帰ってきました|桜井美奈|n|2|7
+騙し絵の牙|塩田武士|n|B|7
+あした、なに着よう||e|3|11
+中島ハルコの恋愛相談室|林真理子|n|B|11
+これはただの夏|燃え殻|n|3|10
+監禁|秋吉理香子|n|3|12
+つみたてNISA・iDeCo・ふるさと納税||b|2|4
+本と鍵の季節|米澤穂信|n|B|9
+パンとスープと猫日和|群ようこ|n|3|9
+趣味で腹いっぱい|山崎ナオコーラ|n|B|10
+レモンと殺人鬼|くわがきあゆ|n|1|12
+ずっとあなたのことが好きでした||n|2|7
+鳥肌が|穂村弘|e|B|8
+桐島、部活やめるってよ|朝井リョウ|n|3|10
+ジェイソン流お金の増やし方|厚切りジェイソン|b|3|4
+家守|歌野晶午|n|2|4
+常設展示室|原田マハ|n|3|9
+まんがでわかる自律神経の整え方||l|2|5
+もう食材をダメにしない！お料理&キッチン整理術||l|3|11
+ざんねんなインターネット 日本をダメにした「ネット炎上」10年史||b|3|5
+考えるマナー|複数の著者|e|B|7
+水族館飼育員のキッカイな日常||c|B|8
+奥様はクレイジーフルーツ|柚木麻子|n|3|8
+わたし、定時で帰ります|朱野帰子|n|B|12
+聖母|秋吉理香子|n|B|9
+食品保存の便利帳||l|2|11
+定年オヤジ改造計画|垣谷美雨|n|3|10
+ももこのまんねん日記|さくらももこ|e|2|12
+雨の降る日は学校へ行かない|相沢沙呼|n|2|8
+赤ずきん、ピノキオ拾って死体と出会う。|青柳碧人|n|3|12
+美女は天下の回りもの|林真理子|e|3|7
+ランチ酒|原田ひ香|n|3|12
+ナゾトキ・ジパング|青柳碧人|n|3|10
+愉楽にて|林真理子|n|3|10
+中島ハルコは懲りてない！|林真理子|n|3|7
+Go Toマリコ|林真理子|e|3|12
+店長がバカすぎて|早見和真|n|2|7
+最高のアフタヌーンティー|柚木麻子|n|B|10
+不倫のオーラ|林真理子|e|3|9
+AX|伊坂幸太郎|n|B|11
+美を尽くして天命を待つ|林真理子|e|3|10
+美女と呼ばないで|林真理子|e|2|8
+三谷幸喜のありふれた生活 13|三谷幸喜|e|3|9
+みんなの節電生活──省エネのプロが教える||l|3|5
+先読み！IT×ビジネス講座 ChatGPT 対話型AIが生み出す未来||b|2|4
+終点のあの子|柚木麻子|n|2|10
+チュベローズで待ってる age22|加藤シゲアキ|n|3|8
+ねじまき片思い|柚木麻子|n|3|7
+すっきり暮らすためのモノ選びのコツ||l|3|7
+何様|朝井リョウ|n|3|10
+三谷幸喜のありふれた生活 2|三谷幸喜|e|3|11
+校閲ガール ア・ラ・モード|宮木あや子|n|3|11
+私のウチには、なんもない3|ゆるりまい|e|3|12
+私をくいとめて|綿矢りさ|n|3|9
+5人の、ジュンコ|真梨幸子|n|3|11
+あなたのぜい肉落とします|垣谷美雨|n|2|4
+帰るのが楽しみになるひとり暮らしBOOK||l|3|7
+美女の七光り|林真理子|e|3|11
+世界地図の下書き|朝井リョウ|n|3|9
+手ぶらで生きる|ミニマリストしぶ|l|3|12
+たそがれ大食堂|坂井希久子|n|B|11
+難しいことはわかりませんが、マンガと図解でお金の増やし方を教えてください！|山崎元、大橋弘祐|b|2|4
+男友達をつくろう|山内マリコ|e|1|10
+クワトロフォルマッジ|青柳碧人|n|3|9
+夫の扶養から抜け出したい|ゆむい|c|3|10
+眠れる美女|秋吉理香子|n|2|10
+サロメ|原田マハ|n|3|11
+Nのために|湊かなえ|n|B|7
+私でもスパイスカレー作れました|こいしゆうか|l|3|11
+平凡|角田光代|n|2|7
+伊藤くんAtoE|柚木麻子|n|B|7
+今日も厄日です|山本さほ|c|2|12
+アラサー女子のコミックエッセイ||c||12
+億男|川村元気|n|B|11
+生きるのがしんどい女が『死ぬまでにやりたいことリスト』を消化していく話||c|3|12
+転職の魔王様|額賀澪|n|3|12
+神 時間術|樺沢紫苑|b|3|5
+連写|今野敏|n|2|5
+向こう側の、ヨーコ|真梨幸子|n|3|11
+総選挙ホテル|桂望実|n|3|8
+彼女は頭が悪いから|姫野カオルコ|n|2|11
+続 メイクがなんとなく変なので友達の美容部員にコツを全部聞いてみた||l|B|12
+PK|伊坂幸太郎|n|B|10
+本屋のダイアナ|柚木麻子|n|B|12
+オルタネート|加藤シゲアキ|n|3|11
+婚活食堂|山口恵以子|n|3|8
+校閲ガール|宮木あや子|n|B|11
+#2024
+世界一流のエンジニア思考法|牛尾剛|b|B|8
+職業としての小説家|村上春樹|e|B|7
+黄金比の縁|石田夏穂|n|3|6
+ド丼パ！||l|3|1
+つめたい夜に|江國香織|n|3|8
+神モチベーション|星渉|b|3|1
+途方もなく霧は流れる|唯川恵|n|3|3
+1年で億り人になる（マンガ）|戸塚真由子|b|3|8
+おばちゃんたちのいるところ|松田青子|n|2|10
+サーキュラーエコノミー||b|2|2
+セシルのもくろみ|唯川恵|n|3|1
+発達障害サバイバルライフハック||l|3|7
+DIE WITH ZERO|ビル・パーキンス|b|B|11
+これだけで、幸せ||l|3|9
+人生の純度が上がる手帳術||l||
+おうち避難のための防災図鑑||l|3|5
+むかし僕が死んだ家|東野圭吾|n|3|5
+片付けたら100万たまった！||l||
+デザイナーが最初の3年で学ぶこと||b|3|5
+Iの悲劇|米澤穂信|n|3|9
+愛のエネルギー家事||l|3|7
+わたし、定時で帰ります 2|朱野帰子|n|B|6
+夜は短し歩けよ乙女|森見登美彦|n|3|4
+栞と嘘の季節|米澤穂信|n|2|5
+村上さんのところ|村上春樹|e|B|2
+小さなスペースで楽しむ模様替え||l|3|11
+盲目的な恋と友情|辻村深月|n|3|5
+麹のレシピ帖||l|2|9
+ナチュラルヴィンテージで作る センスのいらないインテリア||l|3|11
+華麗なるギャツビー|フィッツジェラルド|n|3|3
+ホントに、この人と結婚していいの？||l|3|7
+片付けてるのに片付かないので、東大卒の整理収納アドバイザーに頼んだら部屋が激変した||l|3|7
+さくっと分かるビジネス教養 マーケティング||b|2|9
+法廷遊戯|五十嵐律人|n|2|8
+2030年の世界地図|落合陽一|b|3|3
+カフーを待ちわびて|原田マハ|n|3|10
+北欧時間|日暮いんこ|l|3|9
+はじめてのグラフィックレコーディング|久保田麻美|b|B|5
+今あるもので「あか抜けた」部屋になる|荒井詩万|l|B|9
+愚者のエンドロール|米澤穂信|n|2|6
+わたしたちは銀のフォークと薬を手にして|島本理生|n|B|9
+やっぱり食べに行こう|原田マハ|e|B|9
+もの減ると運が増える||l|3|9
+UXデザインの法則 ―最高のプロダクトとサービスを支える心理学|ジョン・ヤブロンスキー|b|3|4
+カキフライがないなら来なかった|せきしろ、又吉直樹|e|2|7
+たった、それだけ|宮下奈都|n|B|11
+なんで死体がスタジオに！？|森バジル|n|3|8
+夏季限定トロピカルパフェ事件|米澤穂信|n|2|12
+代理母出産、はじめました|垣谷美雨|n|3|4
+集中できないのは部屋のせい|米田まりな|l||
+肩ごしの恋人|唯川恵|n|3|10
+ブラックショーマンと名もなき街の殺人|東野圭吾|n|2|10
+ただ、それだけでよかったんです|松村涼哉|n|2|5
+変な家2|雨穴|n|3|7
+はやしまりこのエッセイ||e|3|3
+同姓同名|下村敦史|n|3|7
+ソファは部屋の真ん中に――買わない・捨てないで部屋は心地よくなる||l|2|11
+人生が劇的に変わる「幸運ルーム」の法則||l|3|9
+むかしむかしある所に、やっぱり死体がありました|青柳碧人|n|2|2
+聖女の救済|東野圭吾|n|3|8
+私のなかの彼女|角田光代|n|2|9
+北欧こじらせ日記|chika|c||
+十角館の殺人|綾辻行人|n|B|3
+地雷グリコ|青崎有吾|n|B|7
+元彼の遺言状|新川帆立|n|B|5
+観測者の殺人|松城明|n|2|4
+それは秘密の|乃南アサ|n|3|9
+けっきょく、よはく（漫画）|ingectar-e|b|3|5
+777|伊坂幸太郎|n|B|1
+方舟|夕木春央|n||
+自分の機嫌を取る暮らし||l||
+妻の言い分、夫の言い分||l|3|7
+科捜研の砦|岩井圭也|n|B|8
+儚い羊たちの祝宴|米澤穂信|n|3|5
+琉球風水シウマの恋占い|シウマ|l|2|9
+ファーストラヴ|島本理生|n|3|7
+ノルウェイの森|村上春樹|n|B|3
+人が増えても、速くならない|倉貫義人|b|3|6
+女という生きもの|益田ミリ|e|B|7
+私の容れ物||e|3|4
+づん子の家計簿||l|3|5
+シウマの開運"福”部屋マニュアル|シウマ|l|3|9
+人魚の眠る家|東野圭吾|n|2|8
+嚙みあわない会話と、ある過去について|辻村深月|n|3|10
+春季限定いちごタルト事件|米澤穂信|n|2|12
+もう別れてもいいですか|垣谷美雨|n|3|10
+脱出||n|3|6
+灼熱|葉真中顕|n|3|1
+Red|島本理生|n|3|8
+おにぎりの具レシピ||l|2|9
+紙の月|角田光代|n|B|2
+水車館の殺人|綾辻行人|n|2|5
+ベストパートナーになるために||l|B|10
+神さまたちの遊ぶ庭|宮下奈都|e|B|10
+無人島ロワイヤル|秋吉理香子|n|2|1
+アンクールな人生|弘中綾香|e|B|1
+三谷幸喜のありふれた生活（巻数不明・2024）|三谷幸喜|e|3|4
+B級恋愛グルメのすすめ|島本理生|e|3|8
+うつ病の人に見えている世界||l|3|7
+午後の最後の芝生|村上春樹|e|3|10
+コーヒーがないと生きていけない！||l|3|4
+絶対正義|秋吉理香子|n|3|1
+天狗屋敷の殺人|大神晃|n|1|11
+ぐんぐん正解が分からなくなる！アート思考クイズ||hd|3|1
+こすらなければ、美肌||l|3|10
+#2025
+恋せぬふたり|吉田恵里香|n|B|2
+おいしいごはんが食べられますように|高瀬隼子|n|3|5
+縁結びカツサンド|冬森灯|n|B|2
+美女のたしなみ|大久保佳代子|e|3|1
+羊と鋼の森|宮下奈都|n|B|2
+今日の人生2 世界がどんなに変わっても|益田ミリ|e|3|2
+人生をガラリと変える帰宅後ルーティン||b|2|2
+セロトニン復活ストレス解消法||l|3|1
+心と体をととのえたら、40代の今が一番健康になりました||c|3|1
+最高ズボラ生活||c|B|1
+木洩れ日に泳ぐ魚|恩田陸|n|3|2
+物語思考|けんすう|l|B|1
+20時過ぎの報告会||c|3|1
+お掃除したら、いいことあった！||l|3|1
+朝イチの「ひとり時間」が人生を変える||l|3|2
+おひとりさまホテル|マキヒロチ|c|3|1
+剣持麗子のワンナイト推理|新川帆立|n|3|1
+ウズベキスタン 西へ東へ春の旅||c|2|1
+正欲|朝井リョウ|n|B|6
+はるか|宿野かほる|n|2|7
+そして、生活はつづく|星野源|e|2|5
+スロウハイツの神様（上）|辻村深月|n|2|3
+お探し物は図書館まで|青山美智子|n|3|6
+転職ばかりうまくなる|ひらいめぐみ|e|B|7
+今日未明|辻堂ゆめ|n|2|8
+喫茶おじさん|原田ひ香|n|2|3
+最後の鑑定人|岩井圭也|n|3|6
+何者|朝井リョウ|n|3|12
+たまごの旅人|近藤史恵|n|3|11
+月とコーヒー|吉田篤弘|n|2|9
+雑貨店とある||m|B|11
+ちょっと旅してみよう|益田ミリ|e|3|8
+三人屋|原田ひ香|n|3|12
+生殖記|朝井リョウ|n|B|11
+舟を編む|三浦しをん|n|B|10
+いつか生まれ変わったら||n|2|9
+あっというまに人は死ぬから|佐藤舞|b|3|
+神客万来！||m|B|12
+そろそろいい歳というけれど|ジェラシーくるみ|e|2|9
+恋とか愛とか優しさなら|一穂ミチ|n|3|11
+ザ・ロイヤルファミリー|早見和真|n|3|12
+駈込み訴え|太宰治|n|3|9
+対岸の家事|朱野帰子|n|3|8
+スパルタ婚活塾|水野敬也|l|3|8
+かわいい結婚|山内マリコ|n|2|6
+ついでにジェントルメン|柚木麻子|n|3|7
+白鳥とコウモリ（上）|東野圭吾|n|3|12
+オタク女子が、4人で暮らしてみたら。|藤谷千明|e|B|10
+魔法のリノベ|星崎真紀|m|3|10
+読書する人だけがたどり着ける場所|齋藤孝|b|3|10
+おいしいが聞こえる|ひらいめぐみ|e|3|10
+50歳、はじまりの音しか聞こえない|青木さやか|e|2|6
+幸せな人は2時間の使い方の天才||l|B|9
+どこでもいいから、どこか遠くへ行きたい|pha|e|3|6
+赤と青とエスキース|青山美智子|n|B|6
+一点集中術|デボラ・ザック|b|3|
+#2026
+変な地図|雨穴|n|1|1
+イン・ザ・メガチャーチ|朝井リョウ|n|B|2
+そして誰もゆとらなくなった|朝井リョウ|e|B|1
+時をかけるゆとり|朝井リョウ|e|3|2
+君が手にするはずだった黄金について|小川哲|n|3|1
+ザ・ロイヤルファミリー|早見和真|n|3|1
+ガソリン生活|伊坂幸太郎|n|3|5
+もしもし、運命の人ですか。|穂村弘|e|3|1
+ひとり広報の教科書|井上千絵|b|3|1
+スター|朝井リョウ|n|B|2
+古くてあたらしい仕事|島田潤一郎|e|3|3
+もはや僕は人間じゃない|爪切男|e|B|3
+自分の頭で考えて動く部下の育て方|篠原信|b|B|4
+殺人出産|村田沙耶香|n|3|3
+砂糖菓子の弾丸は撃ちぬけない|桜庭一樹|n|2|2
+月曜日の抹茶カフェ|青山美智子|n|3|2
+ちょっとそこまで旅してみよう|益田ミリ|e|3|1
+サンドの女 三人屋|原田ひ香|n|3|3
+壇蜜日記|壇蜜|e|B|2
+じわり台湾一周|まえだなをこ|c|3|3
+相談の森|燃え殻|e|B|2
+転んで起きて 優秀じゃない私の生存戦略|西村ゆか|e|3|2
+彼女のカーブ|ウラモトユウコ|m|3|3
+謎の香りはパン屋から|土屋うさぎ|n|3|2
+死にたい夜にかぎって|爪切男|e|B|3
+白鳥とコウモリ（下）|東野圭吾|n|3|3
+彼女たちの事情|新津きよみ|n|3|3
+君のクイズ|小川哲|n|B|3
+推しの殺人|遠藤かたる|n|2|3
+不機嫌な果実|林真理子|n|3|4
+マイクロスパイ・アンサンブル|伊坂幸太郎|n|3|4
+スペードの3|朝井リョウ|n|3|4
+ある少女にまつわる殺人の告白|佐藤青南|n|3|4
+卒業のための犯罪プラン|浅瀬明|n|3|4
+蛇にピアス|金原ひとみ|n|B|4
+今日も延長ナリ|爪切男|e|2|6
+いくつもの週末|江國香織|e|3|5
+看守の流儀|城山真一|n|B|4
+ロイヤルホストで夜まで語りたい|複数の著者|e|3|5
+星のうた|左右社編集部|ht|3|5
+北欧をこじらせた私の サバイバル英会話|chika|c|3|5
+100分de名著 『ウェイリー版・源氏物語』|安田登|h|3|5
+離婚しそうな私が結婚を続けている29の理由|アルテイシア|e|B|5
+さみしくてごめん|永井玲衣|e|3|8
+拡張機脳|もしカバ|m|3|4
+さいはての彼女|原田マハ|n|2|5
+とんこつQ&A|今村夏子|n|2|5
+ライ麦畑でつかまえて|J.D.サリンジャー|n|2|6
+剣持麗子のワンナイト推理|新川帆立|n|3|7
+本を読む人はうまくいく|長倉顕太|b|3|8
+倒産続きの彼女|新川帆立|n|3|7
+仕事とスマホで終わる日々が「習いごと」で変わった話|よざひかる|c|3|8
+結婚してみることにした|壇蜜|e|3|6
+空飛ぶ広報室|有川浩|n|B|7
+君は武道館に立てない|多田基生|m|2|7
+老人ホームで死ぬほどモテたい|上坂あゆ美|ht|3|8
+ただの主婦が東大目指してみた|ただっち|e|2|8
+中年に飽きた夜は|益田ミリ|c|3|8
+脱 会社辞めたいループ|佐野創太|b|2|8
+ラプラスの魔女|東野圭吾|n|3|8
+100分de名著 知里幸恵『アイヌ神謡集』|中川裕|h|3|8
+人生が面白くなる学びのわざ|齋藤孝|l|3|8
+女王さまの夜食カフェ|古内一絵|n|B|9
+ストロベリー戦争 弁理士・大鳳未来|南原詠|n|3|9
+うちらきっとズッ友||m|3|9
+地球の歩き方 Plat アイスランド|地球の歩き方編集室|l|3|9
+みんなの機内食 110人の「機上の晩餐」お見せします！||hn|2|8
+ハーブカレー||l|2|8
+アイスランド☆TRIP 神秘の絶景に会いに行く！||c|B|9
+半うつ　憂鬱以上、うつ未満|平光源|l|2|9
+世界思い出旅ごはん ローカルフードを食べ歩き！||c|3|8
+ペギーさんの台湾朝ごはんとおやつ||l|3|8
+STRANGE HOUSES|雨穴|n|B|9
+競争の番人|新川帆立|n|3|9
+女の国会|新川帆立|n|B|9
+競争の番人 内偵の王子|新川帆立|n|3|10
+けむたい後輩|柚木麻子|n|B|10
+オールド台中食べ歩き|楊双子|e|3|11
+四維街一号に暮らす五人|楊双子|n|3|11
+もういちど生まれる|朝井リョウ|n|3|11
+お金の学校に通う前と後|雨宮仁美|e|B|11
+ケニアで年越し！||c|B|11
+女王さまの休日|古内一絵|n|B|11
+年間365冊本読みゾンビの生態|雨宮仁美|e|3|11
+年間365冊読む本読みゾンビの狂気の1年間の読書日記|雨宮仁美|e|B|11
+深夜高速バスに100回ぐらい乗ってわかったこと|スズキナオ|e|B|11
+1Q84 BOOK1|村上春樹|n||
+1Q84 BOOK2|村上春樹|n||
+パッキパキ北京|綿矢りさ|n|B|11
+時間のデザイン|井上新八|b||`;
+
+// 積読・読みかけ（2026年の読書キロクの「積読」「進行中」）
+const SHELF_RAW = `p|さみしい夜にはペンを持て|古賀史健|l|x
+p|自分のために料理をつくる|星野概念|l|x
+p|きみのお金は誰のため|田内学|l|x
+p|旅をする木|星野道夫|e
+p|ラオスにいったい何があるというんですか？|村上春樹|e
+p|平熱のまま、この世界に熱狂したい|宮崎智之|e
+p|よくわからないけど、あきらかにすごい人|穂村弘|e
+p|おいしいものでできている|稲田俊輔|e
+p|すべて真夜中の恋人たち|川上未映子|n|x
+p|部下をもったらいちばん最初に読む本|橋本拓也|b
+p|表層UIデザインの解剖学|本田雅人|b
+p|ここちよさの建築|光嶋裕介|hd
+p|成瀬は天下を取りにいく|宮島未奈|n|x
+p|invert|相沢沙呼|q|x
+p|愛するということ|エーリッヒ・フロム|hp|x
+p|ソロ活女子のススメ|朝井麻由美|l|x
+p|インシテミル|米澤穂信|q
+p|推し、燃ゆ|宇佐見りん|n|x
+p|下剋上|サンドウィッチマン|e|x
+p|マチネの終わりに|平野啓一郎|n|x
+p|アンダーグラウンド|村上春樹|hn|x
+p|約束された場所で|村上春樹|hn|x
+p|羊をめぐる冒険|村上春樹|n|x
+p|デルタの羊|塩田武士|n|x
+p|ファミリーポートレイト|桜庭一樹|n|x
+p|そとがわの日記／うちがわの日記|雨宮仁美|e`;
+
+const GENRES = [
+  {id:'novel', name:'小説',       en:'Novels', desc:'物語の本。下のタグで、ミステリや恋愛などに絞り込めます。'},
+  {id:'words', name:'エッセイ',   en:'Essays', desc:'書き手の日々や本音をのぞく本。短歌もここに。'},
+  {id:'work',  name:'仕事',       en:'Work',   desc:'働き方、考え方、キャリア、デザインの実務。'},
+  {id:'life',  name:'暮らし・生き方', short:'暮らし', en:'Life', desc:'自分の毎日を整える本。片づけ、料理、お金、健康、人間関係。'},
+  {id:'learn', name:'人文・アート', short:'人文', en:'Humanities & Art', desc:'世界を知って考える本。哲学、歴史、デザイン、アート、ノンフィクション。'},
+  {id:'manga', name:'マンガ',     en:'Comics', desc:'マンガとコミックエッセイ。'}
+];
+const CAT = {
+  n:['novel',''], q:['novel','ミステリ'], e:['words',''], ht:['words','短歌'], b:['work',''],
+  h:['learn',''], hp:['learn','哲学'], hd:['learn','デザイン・アート'], hn:['learn','ノンフィクション'],
+  l:['life',''], m:['manga',''], c:['manga','コミックエッセイ']
+};
+// 「仕事」として登録されていたが、中身は暮らし・生き方／教養の本
+const TO_LIFE = ['望む人生に組み替える「人生設計ノート」','人は話し方が9割','LOVE理論','女子の人間関係','超一流の雑談術','チーズはどこへ行った？','すぐに不安になってしまうが一瞬で消える本','会話は、途切れてもいい','友だち幻想','多分そいつ、今ごろパフェとか食ってるよ','美容は自尊心の筋トレ','文具に恋して','夢をかなえるゾウ３','「会話の苦手」がなくなる本','察しない男、説明しない女','やめるコトリスト','幸せ上手さん習慣','朝の余白が人生を変える','「引きよせ」の教科書','繊細さんの本','最強の生き方','めんどくさいが無くなる本','アミティ先生','１％の努力','20代の生き方で人生は9割決まる！','20代にやっておきたい17のコト','東大なんて来なければよかった','それって、必要？','職業、お金持ち','決めるだけ。','クソ女の美学','もしあと一年で人生が終わるとしたら？','しないことリスト','お金の大学','週末フィンランド','つみたてNISA・iDeCo・ふるさと納税','ジェイソン流お金の増やし方','難しいことはわかりませんが、マンガと図解でお金の増やし方を教えてください！','1年で億り人になる（マンガ）','DIE WITH ZERO','人生をガラリと変える帰宅後ルーティン','あっというまに人は死ぬから','読書する人だけがたどり着ける場所','本を読む人はうまくいく'];
+const TO_LEARN = {'嫌われる勇気':'哲学','スマホ脳':'','まんがでわかるサピエンス全史の読み方':'','ざんねんなインターネット 日本をダメにした「ネット炎上」10年史':'','2030年の世界地図':''};
+const ICON_PATHS = {
+  novel:{f:'M3.5 5.3C6 4.4 9 4.5 11.2 5.7v13.8C9 18.4 6 18.3 3.5 19.2z M12.8 5.7C15 4.5 18 4.4 20.5 5.3v13.9c-2.5-.9-5.5-.8-7.7.3z'},
+  words:{f:'M4.5 9h11.5v4.5a5.5 5.5 0 0 1-5.5 5.5h-.5a5.5 5.5 0 0 1-5.5-5.5z M16 10h1.4a3 3 0 0 1 0 6H16v-1.7h1.4a1.3 1.3 0 0 0 0-2.6H16z', s:'M8.3 3.6c0 1 1 1.5 1 2.6 M12.3 3.6c0 1 1 1.5 1 2.6'},
+  work:{f:'M3.5 8.3h17v10.9h-17z', s:'M9 8.3V6.8a3 3 0 0 1 6 0v1.5'},
+  life:{f:'M12 4.2l8.6 7.1H18.3v8.3h-4.4v-5.1h-3.8v5.1H5.7v-8.3H3.4z'},
+  learn:{f:'M12 3.8a8.2 8.2 0 1 0 0 16.4c1.4 0 1.8-1 1.3-2-.5-1 .2-2.1 1.3-2.1h2.5a3.1 3.1 0 0 0 3.1-3.1c0-5.1-3.7-9.2-8.2-9.2z M8.2 10.2a1.3 1.3 0 1 0 0 2.6a1.3 1.3 0 1 0 0-2.6z M10.6 6.4a1.3 1.3 0 1 0 0 2.6a1.3 1.3 0 1 0 0-2.6z M14.6 6.6a1.3 1.3 0 1 0 0 2.6a1.3 1.3 0 1 0 0-2.6z'},
+  manga:{f:'M3.8 4.8h16.4v11.4h-9.1l-4.6 3.6v-3.6H3.8z M7.5 8.3h9v1.6h-9z M7.5 11.3h6v1.6h-6z'}
+};
+const DARK_G = ['novel','words','learn'];
+const gicon = (id, cls='gic') => `<span class="${cls}${DARK_G.includes(id)?' od':''}" style="--c:var(--g-${id})" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="${ICON_PATHS[id].f}"/>${ICON_PATHS[id].s?`<path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="${ICON_PATHS[id].s}"/>`:''}</svg></span>`;
+const RANK = {B:4,'3':3,'2':2,'1':1,'':0};
+// 小説のサブジャンル（1冊に最大2つ）
+const NTAGS = {M:'ミステリ',R:'恋愛',W:'お仕事',Y:'青春',F:'家族',G:'ごはん',L:'',H:''};
+NOVEL_TAGS_EXTRA = {'眠れる美女':'M','脱出':'M'};
+const NOVEL_TAGS = {"白ゆき姫殺人事件": "M", "騎士団長殺しⅠ": "L", "贖罪": "M", "国語、算数、理科、誘拐": "M", "叫びと祈り": "M", "赤い指": "MF", "葉桜の季節に君を想うということ": "MR", "ルビンの壺が割れた": "MR", "氷菓": "MY", "パラレルワールド・ラブストーリー": "MR", "リバース": "M", "ぼくのメジャースプーン": "Y", "medium": "M", "豆の上で眠る": "MF", "容疑者Xの献身": "M", "赤ずきん、旅の途中で死体と出会う": "M", "アリス殺し": "M", "かもめ食堂": "G", "晴れ、ときどき食品サンプル": "M", "ユートピア": "M", "モンスター": "H", "コンビニ人間": "LW", "一華後宮料理帖": "G", "私たちが星座を盗んだ理由": "M", "むかしむかしあるところに死体がありました": "M", "ナミヤ雑貨店の奇蹟": "H", "夜行観覧車": "MF", "獣の城": "M", "6人の嘘つきな大学生": "MY", "君が夏を走らせる": "YF", "イノセントデイズ": "M", "母性": "MF", "桜のような僕の恋人": "R", "ホワイトラビット": "M", "僕は何度でも、君に初めての恋をする": "R", "夢をかなえるゾウ１": "H", "農ガール、農ライフ": "W", "どちらかが彼女を殺した": "M", "おしまいのデート": "H", "花の鎖": "M", "老後の資金がありません！": "F", "悪いものがきませんように": "M", "告白": "M", "悪意": "M", "高校入試": "M", "少女": "MY", "死にたくなったら電話して": "LR", "麦本三歩の好きなもの": "H", "コーヒーが冷めないうちに": "H", "あなたの人生、片づけます": "H", "あの日きみは何をした": "MF", "僕たちはみんな、大人になれなかった": "R", "変な絵": "M", "彼女は存在しない": "M", "人間失格": "L", "か「」く「」し「」ご「」と": "YR", "ポイズンドーター・ホーリーマザー": "MF", "星の王子さま": "L", "世にも奇妙な君物語": "H", "傲慢と善良": "R", "幸福な生活": "M", "本日のメニューは": "G", "恋するゲレンデ": "M", "また、同じ夢を見ていた": "Y", "家庭教師は知っている": "M", "ネタ元": "W", "婚活中毒": "MR", "判決はCMの後で": "M", "星をつける女": "WG", "ナラタージュ": "R", "i": "L", "最高のオバハン": "H", "重力ピエロ": "MF", "その手を握りたい": "R", "Butter": "MG", "明日の子供たち": "W", "氷の仮面": "H", "あまからカルテット": "G", "仮面同窓会": "M", "総理の夫": "W", "危険なビーナス": "M", "王妃の帰還": "Y", "殺した夫が帰ってきました": "M", "騙し絵の牙": "W", "中島ハルコの恋愛相談室": "H", "これはただの夏": "H", "監禁": "M", "本と鍵の季節": "MY", "パンとスープと猫日和": "G", "趣味で腹いっぱい": "H", "レモンと殺人鬼": "M", "桐島、部活やめるってよ": "Y", "家守": "M", "常設展示室": "H", "奥様はクレイジーフルーツ": "R", "わたし、定時で帰ります": "W", "聖母": "MF", "定年オヤジ改造計画": "F", "雨の降る日は学校へ行かない": "Y", "赤ずきん、ピノキオ拾って死体と出会う。": "M", "ランチ酒": "GW", "ナゾトキ・ジパング": "M", "愉楽にて": "R", "中島ハルコは懲りてない！": "H", "店長がバカすぎて": "W", "最高のアフタヌーンティー": "GW", "AX": "MF", "終点のあの子": "Y", "チュベローズで待ってる age22": "W", "ねじまき片思い": "R", "何様": "YW", "校閲ガール ア・ラ・モード": "W", "私をくいとめて": "R", "5人の、ジュンコ": "M", "あなたのぜい肉落とします": "H", "世界地図の下書き": "Y", "たそがれ大食堂": "G", "クワトロフォルマッジ": "M", "サロメ": "H", "Nのために": "MR", "平凡": "H", "伊藤くんAtoE": "R", "億男": "H", "転職の魔王様": "W", "連写": "M", "向こう側の、ヨーコ": "H", "総選挙ホテル": "W", "PK": "M", "本屋のダイアナ": "Y", "オルタネート": "Y", "婚活食堂": "GR", "校閲ガール": "W", "黄金比の縁": "W", "つめたい夜に": "H", "途方もなく霧は流れる": "H", "おばちゃんたちのいるところ": "H", "セシルのもくろみ": "H", "むかし僕が死んだ家": "M", "Iの悲劇": "MW", "わたし、定時で帰ります 2": "W", "栞と嘘の季節": "MY", "盲目的な恋と友情": "R", "華麗なるギャツビー": "LR", "法廷遊戯": "M", "カフーを待ちわびて": "R", "愚者のエンドロール": "MY", "わたしたちは銀のフォークと薬を手にして": "R", "たった、それだけ": "H", "なんで死体がスタジオに！？": "MW", "夏季限定トロピカルパフェ事件": "MY", "代理母出産、はじめました": "F", "肩ごしの恋人": "R", "ブラックショーマンと名もなき街の殺人": "M", "ただ、それだけでよかったんです": "MY", "変な家2": "M", "同姓同名": "M", "むかしむかしある所に、やっぱり死体がありました": "M", "聖女の救済": "M", "私のなかの彼女": "H", "十角館の殺人": "M", "地雷グリコ": "Y", "元彼の遺言状": "MW", "観測者の殺人": "M", "それは秘密の": "H", "777": "M", "方舟": "M", "科捜研の砦": "MW", "儚い羊たちの祝宴": "M", "ファーストラヴ": "M", "ノルウェイの森": "LR", "人魚の眠る家": "MF", "嚙みあわない会話と、ある過去について": "H", "春季限定いちごタルト事件": "MY", "もう別れてもいいですか": "F", "灼熱": "H", "Red": "R", "紙の月": "H", "水車館の殺人": "M", "無人島ロワイヤル": "M", "絶対正義": "M", "天狗屋敷の殺人": "M", "恋せぬふたり": "H", "おいしいごはんが食べられますように": "WG", "縁結びカツサンド": "G", "羊と鋼の森": "WY", "木洩れ日に泳ぐ魚": "M", "剣持麗子のワンナイト推理": "MW", "正欲": "H", "スロウハイツの神様（上）": "Y", "お探し物は図書館まで": "H", "今日未明": "M", "喫茶おじさん": "G", "最後の鑑定人": "MW", "何者": "YW", "たまごの旅人": "W", "月とコーヒー": "H", "三人屋": "G", "生殖記": "H", "舟を編む": "W", "恋とか愛とか優しさなら": "R", "ザ・ロイヤルファミリー": "WF", "駈込み訴え": "L", "対岸の家事": "F", "かわいい結婚": "R", "ついでにジェントルメン": "H", "白鳥とコウモリ（上）": "M", "白鳥とコウモリ（下）": "M", "赤と青とエスキース": "R", "変な地図": "M", "イン・ザ・メガチャーチ": "H", "君が手にするはずだった黄金について": "H", "ガソリン生活": "MF", "スター": "W", "殺人出産": "L", "砂糖菓子の弾丸は撃ちぬけない": "YM", "月曜日の抹茶カフェ": "G", "サンドの女 三人屋": "G", "謎の香りはパン屋から": "MG", "彼女たちの事情": "M", "君のクイズ": "MW", "推しの殺人": "M", "不機嫌な果実": "R", "マイクロスパイ・アンサンブル": "H", "スペードの3": "H", "ある少女にまつわる殺人の告白": "M", "卒業のための犯罪プラン": "M", "蛇にピアス": "L", "看守の流儀": "MW", "さいはての彼女": "H", "とんこつQ&A": "L", "ライ麦畑でつかまえて": "LY", "倒産続きの彼女": "MW", "空飛ぶ広報室": "WR", "ラプラスの魔女": "M", "女王さまの夜食カフェ": "G", "ストロベリー戦争 弁理士・大鳳未来": "MW", "STRANGE HOUSES": "M", "競争の番人": "MW", "女の国会": "WM", "競争の番人 内偵の王子": "MW", "けむたい後輩": "Y", "四維街一号に暮らす五人": "H", "もういちど生まれる": "Y", "女王さまの休日": "G", "恋のゴンドラ": "RM", "彼女は頭が悪いから": "H", "夜は短し歩けよ乙女": "RY", "はるか": "M", "1Q84 BOOK1": "L", "1Q84 BOOK2": "L"};
+
+const norm = s => (s||'').normalize('NFKC').toLowerCase()
+  .replace(/[\u30a1-\u30f6]/g, c => String.fromCharCode(c.charCodeAt(0)-0x60))
+  .replace(/[\s・、。,.!！?？「」『』（）()〈〉“”"'～〜\-―–—☆]/g,'');
+
+const map = new Map(); let year = '';
+for (const line of RAW.split('\n')) {
+  if (!line.trim()) continue;
+  if (line.startsWith('#')) { year = line.slice(1); continue; }
+  const [t,a,c,r,m] = line.split('|');
+  let [g,sub] = CAT[c] || ['novel',''];
+  if (TO_LIFE.includes(t)) g = 'life';
+  if (t in TO_LEARN) { g = 'learn'; sub = TO_LEARN[t]; }
+  const key = norm(t), when = (+year)*100 + (m ? +m : 0);
+  let b = map.get(key);
+  if (!b) { b = {t, a:a||'', g, sub, r:r||'', years:[], when:0}; map.set(key,b); }
+  if (!b.a && a) b.a = a;
+  if (RANK[r||''] > RANK[b.r]) b.r = r;
+  if (!b.years.includes(year)) b.years.push(year);
+  b.when = Math.max(b.when, when);
+}
+const BOOKS = [...map.values()].map(b => { const subs = b.g==='novel' ? (NOVEL_TAGS[b.t]||NOVEL_TAGS_EXTRA[b.t]||'').split('').map(c=>NTAGS[c]).filter(Boolean) : (b.sub?[b.sub]:[]); return {...b, subs, years:b.years.sort(), k:norm(b.t+' '+b.a+' '+subs.join(' '))}; });
+const SHELF = SHELF_RAW.split('\n').map(l=>{const [st,t,a,c,x]=l.split('|'); const [g,sub]=CAT[c]||['novel','']; const away = x==='x'; return {st,t,a,g,away,subs:sub?[sub]:[],k:norm(t+' '+a+' '+sub+(away?' 手元にない':''))};});
+const YEARS = ['2021','2022','2023','2024','2025','2026'];
+const gIndex = id => GENRES.findIndex(g=>g.id===id);
+
+const state = {q:'', g:'all', subs:[], home:false, y:'all', best:false, sort:'new', view: ['#authors','#tsundoku'].includes(location.hash) ? location.hash.slice(1) : 'books'};
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+$('tally').innerHTML =
+  `<div><b>${BOOKS.length}</b><span>冊</span></div>`+
+  `<div><b>${BOOKS.filter(b=>b.r==='B').length}</b><span>冊がBest!!</span></div>`+
+  `<div><b>${new Set(BOOKS.map(b=>b.a).filter(Boolean)).size}</b><span>人の著者</span></div>`;
+
+// year chart: stacked bars per year by shelf
+const yLab = y => y==='2021'?'〜2021':y;
+const perYear = YEARS.map(y => ({y, n: BOOKS.filter(b=>b.years.includes(y)).length}));
+const maxY = Math.max(...perYear.map(p=>p.n));
+$('years').innerHTML = perYear.map(p => `<div class="ycol"><div class="ytot">${p.n}<small>冊</small></div><div class="stack" style="--h:${(p.n/maxY*78).toFixed(1)}%">` +
+  GENRES.map(g => { const n = BOOKS.filter(b=>b.g===g.id && b.years.includes(p.y)).length;
+    return n ? `<button class="seg" type="button" data-g="${g.id}" data-y="${p.y}" style="--c:var(--g-${g.id});--n:${n}" title="${yLab(p.y)}年 ${g.name} ${n}冊" aria-label="${yLab(p.y)}年の${g.name}、${n}冊"></button>` : ''; }).join('') +
+  `</div></div>`).join('');
+$('ylab').innerHTML = YEARS.map(y=>`<span data-y="${y}">${yLab(y)}</span>`).join('');
+$('legend').innerHTML = GENRES.map(g=>`<button type="button" data-g="${g.id}" style="--c:var(--g-${g.id})" aria-pressed="false">${gicon(g.id)}${g.name}<em>${BOOKS.filter(b=>b.g===g.id).length}</em></button>`).join('');
+const toList = () => document.querySelector('.bar').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+$('years').addEventListener('click', e => { const sg=e.target.closest('.seg'); if (!sg) return; state.g=sg.dataset.g; state.subs=[]; state.y=sg.dataset.y; $('year').value=state.y; render(); toList(); });
+$('legend').addEventListener('click', e => { const b=e.target.closest('button'); if (!b) return; state.g = state.g===b.dataset.g ? 'all' : b.dataset.g; state.subs=[]; render(); toList(); });
+
+$('year').innerHTML = `<option value="all">全期間</option>` + YEARS.slice().reverse().map(y=>`<option value="${y}">${y==='2021'?'〜2021':y}年</option>`).join('');
+
+function matches(b){
+  if (state.y!=='all' && !b.years.includes(state.y)) return false;
+  if (state.best && b.r!=='B') return false;
+  if (state.subs.length && !(b.g==='novel' && state.subs.every(t=>b.subs.includes(t)))) return false;
+  if (state.q) {
+    const terms = state.q.split(/\s+/).map(norm).filter(Boolean);
+    const g = GENRES[gIndex(b.g)], gname = norm(g.name+' '+g.en);
+    if (!terms.every(t => b.k.includes(t) || gname.includes(t))) return false;
+  }
+  return true;
+}
+function hl(text){
+  let out = esc(text); const q = state.q.trim(); if (!q) return out;
+  for (const term of q.split(/\s+/).filter(Boolean)) {
+    const t = esc(term).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    out = out.replace(new RegExp(`(${t})`,'gi'),'<mark>$1</mark>');
+  }
+  return out;
+}
+const stars = r => r==='B' ? '<span class="best">Best!!</span>' : (RANK[r] ? `<span class="rt" aria-label="評価${RANK[r]}">${'★'.repeat(RANK[r])}</span>` : '');
+const yrLabel = ys => ys.map(y=>y==='2021'?'〜2021':y).join(' / ');
+function sorter(a,b){
+  if (state.sort==='title') return a.t.localeCompare(b.t,'ja');
+  if (state.sort==='rate') return RANK[b.r]-RANK[a.r] || b.when-a.when;
+  return b.when-a.when;
+}
+
+function subChips(){
+  const save = state.subs; state.subs = [];
+  const base = BOOKS.filter(b=>b.g==='novel' && matches(b));
+  state.subs = save;
+  const sel = base.filter(b=>save.every(t=>b.subs.includes(t)));
+  const order = ['ミステリ','恋愛','お仕事','青春','家族','ごはん'];
+  return `<div class="subchips" role="group" aria-label="小説のジャンル"><button type="button" class="subchip" data-s="" aria-pressed="${!save.length}">小説すべて <span class="n">${base.length}</span></button>` +
+    order.map(t=>{const on=save.includes(t); const n=on?sel.length:sel.filter(b=>b.subs.includes(t)).length; return (n||on)?`<button type="button" class="subchip" data-s="${t}" aria-pressed="${on}">${t} <span class="n">${n}</span></button>`:''}).join('') + `</div>` +
+    (save.length>1 ? `<p class="subnote">「${save.join('」×「')}」の両方に当てはまる小説</p>` : (save.length ? `<p class="subnote">ほかのタグも押すと、組み合わせで絞り込めます（例：ミステリ×恋愛）</p>` : ''));
+}
+function backBar(){
+  if (!state.back || state.q !== state.back.a) return '';
+  const label = state.back.view==='authors' ? '著者一覧に戻る' : '読みかけに戻る';
+  return `<div class="backbar"><button type="button" id="backBtn">← ${label}</button><span>${esc(state.back.a)} の本</span></div>`;
+}
+function render(){
+  const hit = BOOKS.filter(matches);
+  $('genres').innerHTML =
+    `<button class="chip" type="button" data-g="all" aria-pressed="${state.g==='all'}">すべて <span class="n">${hit.length}</span></button>` +
+    GENRES.map(g=>`<button class="chip" type="button" data-g="${g.id}" aria-pressed="${state.g===g.id}" style="--c:var(--g-${g.id})">${gicon(g.id,"gic sm")}${g.short||g.name} <span class="n">${hit.filter(b=>b.g===g.id).length}</span></button>`).join('');
+  $('legend').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', state.g===b.dataset.g));
+  const shown = state.g==='all' ? hit : hit.filter(b=>b.g===state.g);
+  $('result').innerHTML = `<b>${shown.length}</b> 冊`;
+  $('viewsw').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===state.view));
+  const yrs = $('years'), filtering = state.g!=='all' || state.y!=='all';
+  yrs.classList.toggle('dim', filtering);
+  yrs.querySelectorAll('.seg').forEach(el=>el.classList.toggle('on', (state.g==='all'||el.dataset.g===state.g)&&(state.y==='all'||el.dataset.y===state.y)));
+  $('ylab').querySelectorAll('span').forEach(el=>el.classList.toggle('on', state.y===el.dataset.y));
+
+  if (state.view==='tsundoku') { renderTsundoku(); return; }
+  if (state.view==='authors' && shown.length) { renderAuthors(shown); return; }
+  if (!shown.length) {
+    $('list').innerHTML = `<div class="empty"><p>当てはまる本は見つかりませんでした。<br>言葉を短くするか、絞り込みを外してみてください。</p><button type="button" id="reset">絞り込みをすべて外す</button></div>`;
+    $('reset').onclick = () => { Object.assign(state,{q:'',g:'all',subs:[],y:'all',best:false}); $('q').value=''; $('year').value='all'; $('bestOnly').setAttribute('aria-pressed','false'); $('searchBox').classList.remove('has'); render(); };
+    return;
+  }
+  $('list').innerHTML = backBar() + GENRES.filter(g=>state.g==='all'||state.g===g.id).map(g=>{
+    const items = shown.filter(b=>b.g===g.id).sort(sorter);
+    if (!items.length) return '';
+    return `<section class="genre" style="--c:var(--g-${g.id})">
+      <div class="ghead"><h2>${gicon(g.id,"gic lg")}${g.name}</h2><span class="en">${g.en}</span><span class="n">${items.length}</span><p>${g.desc}</p></div>${g.id==='novel'?subChips():''}
+      <ul class="books">${items.map(b=>`<li class="book"><span class="spine"></span>
+        <div><p class="bt">${hl(b.t)}</p><p class="bm">${b.a?`<button class="au" type="button" data-a="${esc(b.a)}">${hl(b.a)}</button>`:''}${b.subs.map(x=>`<span class="tag">${hl(x)}</span>`).join('')}</p></div>
+        <div class="side"><span class="yr">${yrLabel(b.years)}</span>${stars(b.r)}</div></li>`).join('')}</ul></section>`;
+  }).join('');
+}
+
+const authorsOf = b => b.a ? b.a.split('、').map(x=>x.trim()).filter(x=>x && x!=='複数の著者') : [];
+function renderAuthors(shown){
+  const m = new Map();
+  for (const b of shown) for (const a of authorsOf(b)) { if (!m.has(a)) m.set(a, []); m.get(a).push(b); }
+  const arr = [...m.entries()].map(([a,bs]) => ({a, bs:bs.sort((x,y)=>x.when-y.when), best:bs.filter(b=>b.r==='B').length}))
+    .sort((x,y)=> y.bs.length-x.bs.length || y.best-x.best || x.a.localeCompare(y.a,'ja'));
+  const noAuthor = shown.filter(b=>!b.a).length;
+  $('result').innerHTML = `<b>${arr.length}</b> 人`;
+  const yrs = bs => { const ys=[...new Set(bs.flatMap(b=>b.years))].sort(); const f=y=>y==='2021'?'〜2021':y; return ys.length>1 ? `${f(ys[0])}–${f(ys[ys.length-1])}` : f(ys[0]); };
+  const top = g => { const c={}; for (const b of g.bs) c[b.g]=(c[b.g]||0)+1; return Object.entries(c).sort((a,b)=>b[1]-a[1])[0][0]; };
+  const card = x => `<button class="acard au" type="button" data-a="${esc(x.a)}" style="--c:var(--g-${top(x)})">
+      <div class="top"><span class="nm">${hl(x.a)}</span><span class="ct">${x.bs.length}<small>冊</small></span></div>
+      <div class="spines">${x.bs.map(b=>`<i class="${b.r==='B'?'tall':''}" style="--c:var(--g-${b.g})" title="${esc(b.t)}"></i>`).join('')}</div>
+      <div class="ameta"><span>${yrs(x.bs)}</span>${x.best?`<span>Best!! ${x.best}冊</span>`:''}</div></button>`;
+  const tiers = [
+    {name:'よく読む作家', en:'Favorites', desc:'5冊以上読んだ作家。', list:arr.filter(x=>x.bs.length>=5), c:'var(--accent)'},
+    {name:'何冊か読んだ作家', en:'Regulars', desc:'2〜4冊読んだ作家。', list:arr.filter(x=>x.bs.length>=2&&x.bs.length<5), c:'var(--g-words)'},
+    {name:'1冊読んだ作家', en:'First meetings', desc:'まだ1冊だけの作家。次の1冊を探すならここから。', list:arr.filter(x=>x.bs.length===1), c:'var(--g-life)'}
+  ];
+  $('list').innerHTML = tiers.filter(t=>t.list.length).map((t,i)=>`<section class="genre" style="--c:${t.c}">
+    <div class="ghead"><h2>${t.name}</h2><span class="en">${t.en}</span><span class="n">${t.list.length}</span><p>${t.desc}</p></div>
+    ${i<2 ? `<div class="authors${i===1?' compact':''}">${t.list.map(card).join('')}</div>`
+      : `<ul class="singles">${t.list.map(x=>`<li><button class="au" type="button" data-a="${esc(x.a)}"><span class="sp" style="--c:var(--g-${x.bs[0].g})"></span><span><b>${hl(x.a)}</b><span class="bk">${esc(x.bs[0].t)}</span></span></button></li>`).join('')}</ul>`}
+  </section>`).join('') + (noAuthor ? `<p class="note">著者名がまだ分からない本が${noAuthor}冊あり、この一覧には入っていません。共著の本は、それぞれの著者に1冊ずつ数えています。</p>` : '');
+}
+function renderTsundoku(){
+  const terms = state.q.split(/\s+/).map(norm).filter(Boolean);
+  const list = SHELF.filter(b => (state.g==='all'||b.g===state.g) && (!state.home||!b.away) && terms.every(t=>b.k.includes(t)));
+  const awayN = SHELF.filter(b=>b.away).length;
+  const toggle = `<div class="subchips" role="group" aria-label="手元にあるか"><button type="button" class="subchip hm" data-h="" aria-pressed="${!state.home}">すべて</button><button type="button" class="subchip hm" data-h="1" aria-pressed="${state.home}">手元にある本だけ</button></div><p class="subnote">手元にない本には印をつけています（今は${awayN}冊）。</p>`;
+  $('result').innerHTML = `<b>${list.length}</b> 冊`;
+  const groups = [
+    {home:true, name:'手元にある本', en:'At home', desc:'読みかけの本のうち、いま家にある本。続きを読むならここから。', c:'var(--accent)'},
+    {home:false, name:'手元にない本', en:'Somewhere else', desc:'読みかけの本のうち、いまは手元にない本。', c:'var(--g-learn)'}
+  ];
+  const html = groups.map(gr=>{
+    const items = list.filter(b=>!b.away===gr.home); if (!items.length) return '';
+    return `<section class="genre" style="--c:${gr.c}"><div class="ghead"><h2>${gr.name}</h2><span class="en">${gr.en}</span><span class="n">${items.length}</span><p>${gr.desc}</p></div>
+      <ul class="books">${items.map(b=>`<li class="book" style="--c:var(--g-${b.g})"><span class="spine"></span>
+        <div><p class="bt">${hl(b.t)}</p><p class="bm">${b.a?`<button class="au" type="button" data-a="${esc(b.a)}">${hl(b.a)}</button>`:''}${b.subs.map(x=>`<span class="tag">${hl(x)}</span>`).join('')}</p></div>
+        <div class="side">${gicon(b.g,'gic sm')}</div></li>`).join('')}</ul></section>`;
+  }).join('');
+  $('list').innerHTML = (html || `<div class="empty"><p>当てはまる本はありません。</p></div>`);
+}
+function setView(v){
+  state.view = v;
+  try { history.replaceState(null, '', v==='books' ? location.pathname + location.search : '#'+v); }
+  catch (e) { try { if (v!=='books') location.hash = v; else if (location.hash) location.hash = ''; } catch (_) {} }
+  render();
+}
+$('viewsw').addEventListener('click', e => { const b=e.target.closest('button'); if (b) setView(b.dataset.v); });
+addEventListener('hashchange', () => { state.view = ['#authors','#tsundoku'].includes(location.hash) ? location.hash.slice(1) : 'books'; render(); });
+$('q').addEventListener('input', e => { state.q = e.target.value; $('searchBox').classList.toggle('has', !!state.q); render(); });
+$('clear').addEventListener('click', () => { $('q').value=''; state.q=''; $('searchBox').classList.remove('has'); render(); $('q').focus(); });
+$('genres').addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return; state.g = c.dataset.g; if (state.g!=='novel') state.subs=[]; render(); });
+$('year').addEventListener('change', e => { state.y = e.target.value; render(); });
+$('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+$('bestOnly').addEventListener('click', e => { state.best = !state.best; e.currentTarget.setAttribute('aria-pressed', state.best); render(); });
+$('list').addEventListener('click', e => {
+  const hm = e.target.closest('.hm');
+  if (hm) { state.home = !!hm.dataset.h; render(); return; }
+  const sc = e.target.closest('.subchip');
+  if (sc) { const t = sc.dataset.s; if (!t) state.subs = []; else { state.subs = state.subs.includes(t) ? state.subs.filter(x=>x!==t) : [...state.subs, t]; state.g = 'novel'; } render(); return; }
+  if (e.target.closest('#backBtn')) { const bk = state.back; state.back = null; $('q').value=''; state.q=''; $('searchBox').classList.remove('has'); setView(bk.view); requestAnimationFrame(()=>scrollTo(0, bk.y)); return; }
+  const a = e.target.closest('.au'); if (!a) return;
+  state.back = state.view!=='books' ? {view:state.view, y:scrollY, a:a.dataset.a} : null;
+  $('q').value = a.dataset.a; state.q = a.dataset.a; $('searchBox').classList.add('has'); state.g='all'; setView('books');
+  document.querySelector('.bar').scrollIntoView();
+});
+render();
+</script>
+</body>
+</html>
